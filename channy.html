@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Channy - Software Developer Portfolio</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#E91E63',
+secondary: '#F8BBD9'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+.font-poppins { font-family: 'Poppins', sans-serif; }
+.font-lato { font-family: 'Lato', sans-serif; }
+.gradient-bg {
+background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 25%, #e1bee7 50%, #fff8e1 75%, #ffffff 100%);
+}
+.glassmorphism {
+background: rgba(255, 255, 255, 0.3);
+backdrop-filter: blur(15px);
+border: 1px solid rgba(233, 30, 99, 0.1);
+box-shadow: 0 8px 32px rgba(233, 30, 99, 0.1);
+}
+.floating {
+animation: float 6s ease-in-out infinite;
+}
+.floating-delayed {
+animation: float 6s ease-in-out infinite;
+animation-delay: -2s;
+}
+.floating-slow {
+animation: float 8s ease-in-out infinite;
+animation-delay: -4s;
+}
+@keyframes float {
+0%, 100% { transform: translateY(0px); }
+50% { transform: translateY(-20px); }
+}
+.typing-animation {
+border-right: 2px solid #E91E63;
+animation: blink 1s infinite;
+}
+@keyframes blink {
+0%, 50% { border-color: transparent; }
+51%, 100% { border-color: #E91E63; }
+}
+.skill-bar {
+transition: width 2s ease-in-out;
+}
+.card-hover {
+transition: all 0.3s ease;
+}
+.card-hover:hover {
+transform: translateY(-10px) rotateX(5deg);
+box-shadow: 0 20px 40px rgba(233, 30, 99, 0.3);
+}
+.timeline-line {
+background: linear-gradient(to bottom, #E91E63 0%, #F8BBD9 50%, #E1BEE7 100%);
+}
+.modern-timeline-item {
+position: relative;
+background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 187, 217, 0.3) 100%);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(233, 30, 99, 0.1);
+border-radius: 20px;
+padding: 2rem;
+margin-bottom: 2rem;
+transition: all 0.3s ease;
+}
+.modern-timeline-item:hover {
+transform: translateX(10px);
+box-shadow: 0 15px 40px rgba(233, 30, 99, 0.2);
+}
+.skill-category {
+background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 187, 217, 0.2) 100%);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(233, 30, 99, 0.1);
+border-radius: 20px;
+padding: 1.5rem;
+transition: all 0.3s ease;
+}
+.skill-category:hover {
+transform: translateY(-5px);
+box-shadow: 0 15px 35px rgba(233, 30, 99, 0.15);
+}
+.tech-badge {
+transition: all 0.3s ease;
+}
+.tech-badge:hover {
+transform: scale(1.1) rotateY(10deg);
+}
+.dark-mode {
+background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+color: #ffffff;
+}
+.dark-mode .glassmorphism {
+background: rgba(0, 0, 0, 0.25);
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.particle {
+position: absolute;
+width: 6px;
+height: 6px;
+background: linear-gradient(45deg, #E91E63, #F8BBD9);
+border-radius: 50%;
+animation: particle-float 10s infinite linear;
+box-shadow: 0 0 10px rgba(233, 30, 99, 0.5);
+}
+.hero-decoration {
+position: absolute;
+width: 100px;
+height: 100px;
+background: linear-gradient(135deg, rgba(233, 30, 99, 0.1) 0%, rgba(248, 187, 217, 0.1) 100%);
+border-radius: 50%;
+animation: float 8s ease-in-out infinite;
+}
+.hero-decoration:nth-child(2) { animation-delay: -2s; }
+.hero-decoration:nth-child(3) { animation-delay: -4s; }
+@keyframes particle-float {
+0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+10% { opacity: 1; }
+90% { opacity: 1; }
+100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+</style>
+</head>
+<body class="gradient-bg font-lato overflow-x-hidden">
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 glassmorphism">
+<div class="max-w-7xl mx-auto px-6 py-4">
+<div class="flex items-center justify-between">
+<div class="font-poppins font-bold text-xl text-gray-800">Channy</div>
+<div class="hidden md:flex space-x-8">
+<a href="#home" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+<a href="#about" class="text-gray-700 hover:text-primary transition-colors">About</a>
+<a href="#projects" class="text-gray-700 hover:text-primary transition-colors">Projects</a>
+<a href="#experience" class="text-gray-700 hover:text-primary transition-colors">Experience</a>
+<a href="#contact" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+</div>
+<button id="theme-toggle" class="w-10 h-10 flex items-center justify-center rounded-full glassmorphism hover:bg-primary hover:text-white transition-all">
+<i class="ri-sun-line ri-lg"></i>
+</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+<div class="absolute inset-0" style="background-image: url('https://readdy.ai/api/search-image?query=elegant%20modern%20female%20software%20developer%20working%20at%20sophisticated%20desk%20setup%20with%20soft%20pink%20purple%20gradient%20lighting%2C%20minimalist%20workspace%20with%20floating%20holographic%20elements%2C%20professional%20portrait%20lighting%2C%20contemporary%20feminine%20aesthetic%2C%20clean%20modern%20environment%2C%20inspirational%20tech%20workspace&width=1920&height=1080&seq=hero-bg-new&orientation=landscape');">
+<div class="absolute inset-0 bg-gradient-to-r from-white/90 via-pink-50/70 to-transparent"></div>
+</div>
+<!-- Hero decorative elements -->
+<div class="hero-decoration" style="top: 10%; left: 5%;"></div>
+<div class="hero-decoration" style="top: 60%; right: 10%;"></div>
+<div class="hero-decoration" style="bottom: 20%; left: 15%;"></div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 py-20">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="text-left">
+<div class="mb-8">
+<div class="inline-block px-4 py-2 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-full mb-6">
+<span class="text-primary font-medium">✨ Welcome to my digital world</span>
+</div>
+<h1 class="font-poppins font-bold text-5xl lg:text-7xl text-gray-800 mb-6 leading-tight">
+Hi, I'm <span class="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">Channy</span>,<br>
+<span id="typing-text" class="typing-animation bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent">a Passionate Software Developer</span>
+</h1>
+<p class="font-lato text-xl text-gray-600 mb-8 leading-relaxed">
+Building intelligent interfaces with creativity and code ✨<br>
+<span class="text-primary font-medium">Crafting digital experiences that inspire</span>
+</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-gradient-to-r from-primary via-pink-500 to-purple-600 text-white px-10 py-4 !rounded-button font-poppins font-medium hover:shadow-2xl hover:scale-105 transition-all whitespace-nowrap">
+<i class="ri-eye-line mr-2"></i>View My Work
+</button>
+<button class="border-2 border-primary text-primary px-10 py-4 !rounded-button font-poppins font-medium hover:bg-gradient-to-r hover:from-primary hover:to-pink-500 hover:text-white transition-all whitespace-nowrap">
+<i class="ri-mail-heart-line mr-2"></i>Contact Me
+</button>
+</div>
+</div>
+<div class="relative">
+<!-- Developer Image -->
+<div class="relative w-80 h-80 mx-auto">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-pink-300/20 rounded-full blur-3xl"></div>
+<div class="relative w-full h-full rounded-full overflow-hidden glassmorphism">
+<img src=""
+alt="Channy" class="w-full h-full object-cover object-top">
+</div>
+</div>
+<!-- Floating tech icons with new design -->
+<div class="floating absolute -top-4 -right-6 w-20 h-20 flex items-center justify-center glassmorphism rounded-full">
+<i class="ri-code-s-slash-line ri-2x text-primary"></i>
+</div>
+<div class="floating-delayed absolute top-1/3 -left-8 w-16 h-16 flex items-center justify-center glassmorphism rounded-full">
+<i class="ri-heart-pulse-line ri-xl text-pink-500"></i>
+</div>
+<div class="floating-slow absolute -bottom-6 right-8 w-18 h-18 flex items-center justify-center glassmorphism rounded-full">
+<i class="ri-magic-line ri-2x text-purple-500"></i>
+</div>
+<div class="floating absolute top-16 left-16 w-14 h-14 flex items-center justify-center glassmorphism rounded-full">
+<i class="ri-reactjs-line ri-xl text-blue-500"></i>
+</div>
+</div>
+</div>
+</div>
+<!-- Enhanced Particles -->
+<div class="particle" style="left: 5%; animation-delay: 0s;"></div>
+<div class="particle" style="left: 15%; animation-delay: 2s;"></div>
+<div class="particle" style="left: 25%; animation-delay: 4s;"></div>
+<div class="particle" style="left: 75%; animation-delay: 1s;"></div>
+<div class="particle" style="left: 85%; animation-delay: 3s;"></div>
+<div class="particle" style="left: 95%; animation-delay: 5s;"></div>
+</section>
+<!-- About Section -->
+<section id="about" class="py-20">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="font-poppins font-bold text-4xl text-gray-800 mb-4">About Me</h2>
+<p class="font-lato text-lg text-gray-600">Passionate about creating innovative digital solutions</p>
+</div>
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<div class="w-80 h-80 mx-auto relative">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/30 via-pink-300/20 to-purple-300/30 rounded-full blur-2xl"></div>
+<div class="relative w-full h-full rounded-full overflow-hidden glassmorphism border-4 border-gradient-to-r from-primary to-pink-300">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20confident%20young%20asian%20female%20software%20developer%20with%20gentle%20smile%20and%20modern%20hairstyle%2C%20wearing%20contemporary%20business%20casual%20attire%20in%20soft%20pink%20or%20white%2C%20natural%20lighting%2C%20clean%20minimal%20background%2C%20high%20quality%20professional%20headshot%2C%20warm%20approachable%20expression%2C%20modern%20feminine%20professional%20aesthetic&width=400&height=400&seq=about-portrait&orientation=squarish"
+alt="Channy" class="w-full h-full object-cover object-top">
+</div>
+</div>
+<!-- Enhanced floating tech icons -->
+<div class="floating absolute -top-6 -right-6 w-18 h-18 flex items-center justify-center glassmorphism rounded-full border-2 border-primary/20">
+<i class="ri-javascript-line ri-2x text-yellow-500"></i>
+</div>
+<div class="floating-delayed absolute top-1/2 -left-10 w-16 h-16 flex items-center justify-center glassmorphism rounded-full border-2 border-green-300/20">
+<i class="ri-nodejs-line ri-xl text-green-500"></i>
+</div>
+<div class="floating-slow absolute -bottom-6 right-10 w-14 h-14 flex items-center justify-center glassmorphism rounded-full border-2 border-purple-300/20">
+<i class="ri-robot-line ri-xl text-purple-500"></i>
+</div>
+<div class="floating absolute top-20 left-6 w-12 h-12 flex items-center justify-center glassmorphism rounded-full border-2 border-pink-300/20">
+<i class="ri-heart-line ri-lg text-pink-500"></i>
+</div>
+</div>
+<div>
+<p class="font-lato text-lg text-gray-700 mb-8 leading-relaxed">
+I'm a passionate software developer with 5+ years of experience in creating innovative web applications and AI-powered solutions. I specialize in full-stack development, with expertise in modern JavaScript frameworks, backend technologies, and machine learning integration.
+</p>
+<p class="font-lato text-lg text-gray-700 mb-8 leading-relaxed">
+When I'm not coding, you'll find me exploring the latest AI trends, contributing to open-source projects, or mentoring aspiring developers in the tech community.
+</p>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-poppins font-medium text-gray-800">Frontend Development</span>
+<span class="text-primary font-medium">95%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-3">
+<div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" data-width="95%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-poppins font-medium text-gray-800">Backend Development</span>
+<span class="text-primary font-medium">90%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-3">
+<div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" data-width="90%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-poppins font-medium text-gray-800">AI Integration</span>
+<span class="text-primary font-medium">85%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-3">
+<div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" data-width="85%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between items-center mb-2">
+<span class="font-poppins font-medium text-gray-800">UI/UX Design</span>
+<span class="text-primary font-medium">80%</span>
+</div>
+<div class="w-full bg-gray-200 rounded-full h-3">
+<div class="skill-bar bg-gradient-to-r from-primary to-secondary h-3 rounded-full" data-width="80%"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-white/50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="font-poppins font-bold text-4xl text-gray-800 mb-4">Featured Projects</h2>
+<p class="font-lato text-lg text-gray-600">Some of my recent work that I'm proud of</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Project 1 -->
+<div class="card-hover glassmorphism rounded-2xl p-6">
+<div class="mb-6">
+<img src="https://readdy.ai/api/search-image?query=modern%20e-commerce%20web%20application%20interface%20dashboard%20with%20clean%20design%2C%20shopping%20cart%20functionality%2C%20product%20listings%2C%20mobile%20responsive%20layout%2C%20professional%20ui%20ux%20design%2C%20soft%20blue%20purple%20color%20scheme&width=400&height=250&seq=project1&orientation=landscape"
+alt="E-commerce Platform" class="w-full h-48 object-cover object-top rounded-xl">
+</div>
+<h3 class="font-poppins font-semibold text-xl text-gray-800 mb-3">AI-Powered E-commerce Platform</h3>
+<p class="font-lato text-gray-600 mb-4">A modern e-commerce solution with AI-driven product recommendations and intelligent search functionality.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-gradient-to-r from-blue-100 to-blue-200 text-blue-800 rounded-full text-sm">React</span>
+<span class="px-3 py-1 bg-gradient-to-r from-green-100 to-green-200 text-green-800 rounded-full text-sm">Node.js</span>
+<span class="px-3 py-1 bg-gradient-to-r from-purple-100 to-purple-200 text-purple-800 rounded-full text-sm">AI/ML</span>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">
+<i class="ri-external-link-line mr-2"></i>Demo
+</button>
+<button class="flex-1 border border-gray-300 text-gray-700 px-4 py-2 !rounded-button font-medium hover:bg-gray-50 transition-colors whitespace-nowrap">
+<i class="ri-github-line mr-2"></i>GitHub
+</button>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="card-hover glassmorphism rounded-2xl p-6">
+<div class="mb-6">
+<img src="https://readdy.ai/api/search-image?query=task%20management%20application%20interface%20with%20kanban%20board%2C%20project%20tracking%2C%20team%20collaboration%20features%2C%20modern%20dashboard%20design%2C%20productivity%20app%20ui%2C%20clean%20professional%20layout&width=400&height=250&seq=project2&orientation=landscape"
+alt="Task Management App" class="w-full h-48 object-cover object-top rounded-xl">
+</div>
+<h3 class="font-poppins font-semibold text-xl text-gray-800 mb-3">Smart Task Management System</h3>
+<p class="font-lato text-gray-600 mb-4">Collaborative project management tool with real-time updates and intelligent task prioritization.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-gradient-to-r from-yellow-100 to-yellow-200 text-yellow-800 rounded-full text-sm">Vue.js</span>
+<span class="px-3 py-1 bg-gradient-to-r from-red-100 to-red-200 text-red-800 rounded-full text-sm">Laravel</span>
+<span class="px-3 py-1 bg-gradient-to-r from-indigo-100 to-indigo-200 text-indigo-800 rounded-full text-sm">WebSocket</span>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">
+<i class="ri-external-link-line mr-2"></i>Demo
+</button>
+<button class="flex-1 border border-gray-300 text-gray-700 px-4 py-2 !rounded-button font-medium hover:bg-gray-50 transition-colors whitespace-nowrap">
+<i class="ri-github-line mr-2"></i>GitHub
+</button>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="card-hover glassmorphism rounded-2xl p-6">
+<div class="mb-6">
+<img src="https://readdy.ai/api/search-image?query=data%20analytics%20dashboard%20with%20charts%20graphs%20and%20visualizations%2C%20business%20intelligence%20interface%2C%20modern%20data%20visualization%2C%20financial%20analytics%2C%20clean%20dashboard%20design%2C%20professional%20ui&width=400&height=250&seq=project3&orientation=landscape"
+alt="Analytics Dashboard" class="w-full h-48 object-cover object-top rounded-xl">
+</div>
+<h3 class="font-poppins font-semibold text-xl text-gray-800 mb-3">Real-time Analytics Dashboard</h3>
+<p class="font-lato text-gray-600 mb-4">Interactive data visualization platform with machine learning insights and predictive analytics.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-gradient-to-r from-teal-100 to-teal-200 text-teal-800 rounded-full text-sm">D3.js</span>
+<span class="px-3 py-1 bg-gradient-to-r from-orange-100 to-orange-200 text-orange-800 rounded-full text-sm">Python</span>
+<span class="px-3 py-1 bg-gradient-to-r from-pink-100 to-pink-200 text-pink-800 rounded-full text-sm">TensorFlow</span>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 bg-primary text-white px-4 py-2 !rounded-button font-medium hover:bg-primary/90 transition-colors whitespace-nowrap">
+<i class="ri-external-link-line mr-2"></i>Demo
+</button>
+<button class="flex-1 border border-gray-300 text-gray-700 px-4 py-2 !rounded-button font-medium hover:bg-gray-50 transition-colors whitespace-nowrap">
+<i class="ri-github-line mr-2"></i>GitHub
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Experience Section -->
+<section id="experience" class="py-20 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-pink-50/50 via-purple-50/30 to-white"></div>
+<div class="relative max-w-7xl mx-auto px-6">
+<div class="text-center mb-16">
+<div class="inline-block px-6 py-3 bg-gradient-to-r from-primary/10 to-purple-100 rounded-full mb-6">
+<span class="text-primary font-medium">🚀 My Professional Journey</span>
+</div>
+<h2 class="font-poppins font-bold text-5xl bg-gradient-to-r from-primary via-pink-500 to-purple-600 bg-clip-text text-transparent mb-4">Experience & Skills</h2>
+<p class="font-lato text-xl text-gray-600">Crafting digital excellence through continuous learning</p>
+</div>
+<div class="grid lg:grid-cols-2 gap-20">
+<!-- Modern Timeline -->
+<div class="relative">
+<div class="absolute left-6 top-0 bottom-0 w-1 timeline-line rounded-full shadow-lg"></div>
+<div class="space-y-8">
+<div class="modern-timeline-item">
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-primary to-pink-500 rounded-full mr-6 relative z-10 shadow-lg">
+<i class="ri-building-line ri-lg text-white"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-4 mb-3">
+<span class="px-3 py-1 bg-gradient-to-r from-primary/20 to-pink-200 text-primary font-medium rounded-full text-sm">2022 - Present</span>
+<div class="h-px bg-gradient-to-r from-primary/30 to-transparent flex-1"></div>
+</div>
+<h3 class="font-poppins font-bold text-2xl text-gray-800 mb-2">Senior Full Stack Developer</h3>
+<p class="font-lato text-primary font-semibold mb-3">TechCorp Solutions ✨</p>
+<p class="font-lato text-gray-600 leading-relaxed">Leading development of enterprise web applications with React, Node.js, and cloud technologies. Mentoring junior developers and implementing AI-driven features that enhance user experience.</p>
+</div>
+</div>
+</div>
+<div class="modern-timeline-item">
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-secondary to-purple-400 rounded-full mr-6 relative z-10 shadow-lg">
+<i class="ri-code-line ri-lg text-white"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-4 mb-3">
+<span class="px-3 py-1 bg-gradient-to-r from-secondary/30 to-purple-200 text-purple-700 font-medium rounded-full text-sm">2020 - 2022</span>
+<div class="h-px bg-gradient-to-r from-secondary/30 to-transparent flex-1"></div>
+</div>
+<h3 class="font-poppins font-bold text-2xl text-gray-800 mb-2">Frontend Developer</h3>
+<p class="font-lato text-purple-600 font-semibold mb-3">Digital Innovations Inc. 🎨</p>
+<p class="font-lato text-gray-600 leading-relaxed">Developed responsive web applications using Vue.js and React. Collaborated with UX designers to create intuitive user interfaces that delight users.</p>
+</div>
+</div>
+</div>
+<div class="modern-timeline-item">
+<div class="flex items-start">
+<div class="w-12 h-12 flex items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full mr-6 relative z-10 shadow-lg">
+<i class="ri-graduation-cap-line ri-lg text-white"></i>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-4 mb-3">
+<span class="px-3 py-1 bg-gradient-to-r from-purple-100 to-indigo-200 text-purple-700 font-medium rounded-full text-sm">2016 - 2020</span>
+<div class="h-px bg-gradient-to-r from-purple-300/30 to-transparent flex-1"></div>
+</div>
+<h3 class="font-poppins font-bold text-2xl text-gray-800 mb-2">Computer Science Degree</h3>
+<p class="font-lato text-purple-600 font-semibold mb-3">Stanford University 🎓</p>
+<p class="font-lato text-gray-600 leading-relaxed">Bachelor's degree in Computer Science with focus on Machine Learning and Software Engineering. Graduated Summa Cum Laude with honors.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Enhanced Skills Section -->
+<div>
+<h3 class="font-poppins font-bold text-3xl bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent mb-8">Technical Expertise</h3>
+<div class="space-y-6">
+<div class="skill-category">
+<div class="flex items-center mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-blue-400 to-blue-600 rounded-full mr-4">
+<i class="ri-palette-line text-white"></i>
+</div>
+<h4 class="font-poppins font-bold text-xl text-gray-800">Frontend Development</h4>
+</div>
+<div class="flex flex-wrap gap-3">
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-blue-200 hover:border-blue-400">
+<i class="ri-reactjs-line mr-2 text-blue-500"></i><span class="font-medium">React</span>
+</div>
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-green-200 hover:border-green-400">
+<i class="ri-vuejs-line mr-2 text-green-500"></i><span class="font-medium">Vue.js</span>
+</div>
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-yellow-200 hover:border-yellow-400">
+<i class="ri-javascript-line mr-2 text-yellow-500"></i><span class="font-medium">JavaScript</span>
+</div>
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-blue-200 hover:border-blue-400">
+<i class="ri-css3-line mr-2 text-blue-400"></i><span class="font-medium">CSS3</span>
+</div>
+</div>
+</div>
+<div class="skill-category">
+<div class="flex items-center mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-green-400 to-green-600 rounded-full mr-4">
+<i class="ri-server-line text-white"></i>
+</div>
+<h4 class="font-poppins font-bold text-xl text-gray-800">Backend Development</h4>
+</div>
+<div class="flex flex-wrap gap-3">
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-green-200 hover:border-green-400">
+<i class="ri-nodejs-line mr-2 text-green-600"></i><span class="font-medium">Node.js</span>
+</div>
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-orange-200 hover:border-orange-400">
+<i class="ri-database-2-line mr-2 text-orange-500"></i><span class="font-medium">Laravel</span>
+</div>
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-blue-200 hover:border-blue-400">
+<i class="ri-database-line mr-2 text-blue-600"></i><span class="font-medium">MongoDB</span>
+</div>
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-gray-200 hover:border-gray-400">
+<i class="ri-server-line mr-2 text-gray-600"></i><span class="font-medium">PostgreSQL</span>
+</div>
+</div>
+</div>
+<div class="skill-category">
+<div class="flex items-center mb-4">
+<div class="w-10 h-10 flex items-center justify-center bg-gradient-to-r from-purple-400 to-purple-600 rounded-full mr-4">
+<i class="ri-robot-line text-white"></i>
+</div>
+<h4 class="font-poppins font-bold text-xl text-gray-800">AI & Machine Learning</h4>
+</div>
+<div class="flex flex-wrap gap-3">
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-purple-200 hover:border-purple-400">
+<i class="ri-robot-line mr-2 text-purple-500"></i><span class="font-medium">TensorFlow</span>  
+</div>
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-red-200 hover:border-red-400">
+<i class="ri-brain-line mr-2 text-red-500"></i><span class="font-medium">PyTorch</span>
+</div>
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-blue-200 hover:border-blue-400">
+<i class="ri-file-code-line mr-2 text-blue-700"></i><span class="font-medium">Python</span>
+</div>
+<div class="tech-badge px-5 py-3 glassmorphism rounded-full border border-green-200 hover:border-green-400">
+<i class="ri-openai-line mr-2 text-green-700"></i><span class="font-medium">OpenAI</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-white/50 relative overflow-hidden">
+<div class="max-w-4xl mx-auto px-6 relative z-10">
+<div class="text-center mb-16">
+<h2 class="font-poppins font-bold text-4xl text-gray-800 mb-4">Let's Work Together</h2>
+<p class="font-lato text-lg text-gray-600">Have a project in mind? I'd love to hear about it!</p>
+</div>
+<div class="glassmorphism rounded-3xl p-8 md:p-12">
+<form id="contact-form" class="space-y-6">
+<div class="grid md:grid-cols-2 gap-6">
+<div>
+<label class="block font-poppins font-medium text-gray-800 mb-2">Name</label>
+<input type="text" name="name" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+</div>
+<div>
+<label class="block font-poppins font-medium text-gray-800 mb-2">Email</label>
+<input type="email" name="email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+</div>
+</div>
+<div>
+<label class="block font-poppins font-medium text-gray-800 mb-2">Subject</label>
+<input type="text" name="subject" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+</div>
+<div>
+<label class="block font-poppins font-medium text-gray-800 mb-2">Message</label>
+<textarea name="message" rows="6" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"></textarea>
+</div>
+<div class="text-center">
+<button type="submit" class="bg-gradient-to-r from-primary to-secondary text-white px-8 py-4 !rounded-button font-poppins font-medium hover:shadow-lg transition-all whitespace-nowrap">
+<i class="ri-send-plane-line mr-2"></i>Send Message
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Floating elements -->
+<div class="floating absolute top-20 left-10 w-16 h-16 flex items-center justify-center glassmorphism rounded-full">
+<i class="ri-mail-line ri-2x text-primary"></i>
+</div>
+<div class="floating-delayed absolute top-40 right-16 w-12 h-12 flex items-center justify-center glassmorphism rounded-full">
+<i class="ri-message-3-line ri-xl text-secondary"></i>
+</div>
+<div class="floating-slow absolute bottom-32 left-20 w-14 h-14 flex items-center justify-center glassmorphism rounded-full">
+<i class="ri-send-plane-2-line ri-xl text-purple-500"></i>
+</div>
+</section>
+<!-- Footer -->
+<footer class="py-12 border-t border-gray-200/50">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center">
+<div class="flex justify-center space-x-6 mb-6">
+<a href="#" class="w-12 h-12 flex items-center justify-center glassmorphism rounded-full hover:bg-primary hover:text-white transition-all">
+<i class="ri-github-line ri-xl"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center glassmorphism rounded-full hover:bg-primary hover:text-white transition-all">
+<i class="ri-linkedin-line ri-xl"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center glassmorphism rounded-full hover:bg-primary hover:text-white transition-all">
+<i class="ri-twitter-line ri-xl"></i>
+</a>
+<a href="#" class="w-12 h-12 flex items-center justify-center glassmorphism rounded-full hover:bg-primary hover:text-white transition-all">
+<i class="ri-mail-line ri-xl"></i>
+</a>
+</div>
+<p class="font-lato text-gray-600">&copy; 2024 Channy. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<script id="theme-toggle-script">
+document.addEventListener('DOMContentLoaded', function() {
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+themeToggle.addEventListener('click', function() {
+body.classList.toggle('dark-mode');
+const icon = themeToggle.querySelector('i');
+if (body.classList.contains('dark-mode')) {
+icon.className = 'ri-moon-line ri-lg';
+} else {
+icon.className = 'ri-sun-line ri-lg';
+}
+});
+});
+</script>
+<script id="typing-animation-script">
+document.addEventListener('DOMContentLoaded', function() {
+const typingElement = document.getElementById('typing-text');
+const text = 'a Passionate Software Developer';
+let index = 0;
+function typeText() {
+if (index < text.length) {
+typingElement.textContent = text.slice(0, index + 1);
+index++;
+setTimeout(typeText, 100);
+}
+}
+setTimeout(typeText, 1000);
+});
+</script>
+<script id="skill-bars-animation-script">
+document.addEventListener('DOMContentLoaded', function() {
+gsap.registerPlugin(ScrollTrigger);
+const skillBars = document.querySelectorAll('.skill-bar');
+skillBars.forEach(bar => {
+const width = bar.getAttribute('data-width');
+gsap.fromTo(bar,
+{ width: '0%' },
+{
+width: width,
+duration: 2,
+ease: 'power2.out',
+scrollTrigger: {
+trigger: bar,
+start: 'top 80%',
+toggleActions: 'play none none reverse'
+}
+}
+);
+});
+});
+</script>
+<script id="smooth-scroll-script">
+document.addEventListener('DOMContentLoaded', function() {
+const navLinks = document.querySelectorAll('nav a[href^="#"]');
+navLinks.forEach(link => {
+link.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href').substring(1);
+const targetElement = document.getElementById(targetId);
+if (targetElement) {
+const offsetTop = targetElement.offsetTop - 80;
+window.scrollTo({
+top: offsetTop,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+<script id="form-submission-script">
+document.addEventListener('DOMContentLoaded', function() {
+const form = document.getElementById('contact-form');
+form.addEventListener('submit', function(e) {
+e.preventDefault();
+const formData = new FormData(form);
+const data = Object.fromEntries(formData);
+const button = form.querySelector('button[type="submit"]');
+const originalText = button.innerHTML;
+button.innerHTML = '<i class="ri-loader-4-line ri-spin mr-2"></i>Sending...';
+button.disabled = true;
+setTimeout(() => {
+button.innerHTML = '<i class="ri-check-line mr-2"></i>Message Sent!';
+button.classList.add('bg-green-500');
+setTimeout(() => {
+button.innerHTML = originalText;
+button.disabled = false;
+button.classList.remove('bg-green-500');
+form.reset();
+}, 2000);
+}, 1500);
+});
+});
+</script>
+<script id="scroll-animations-script">
+document.addEventListener('DOMContentLoaded', function() {
+gsap.registerPlugin(ScrollTrigger);
+gsap.utils.toArray('.card-hover').forEach((card, index) => {
+gsap.fromTo(card,
+{ y: 60, opacity: 0 },
+{
+y: 0,
+opacity: 1,
+duration: 0.8,
+delay: index * 0.2,
+scrollTrigger: {
+trigger: card,
+start: 'top 85%',
+toggleActions: 'play none none reverse'
+}
+}
+);
+});
+gsap.utils.toArray('section').forEach(section => {
+gsap.fromTo(section.querySelector('h2'),
+{ y: 40, opacity: 0 },
+{
+y: 0,
+opacity: 1,
+duration: 0.8,
+scrollTrigger: {
+trigger: section,
+start: 'top 80%',
+toggleActions: 'play none none reverse'
+}
+}
+);
+});
+});
+</script>
+</body>
+</html>
